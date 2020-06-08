@@ -22,6 +22,13 @@ def mapIndent(str):
 def mapUnindent(str):
     return(re.sub("^\t", "", str))
 
+def mapPyComment(str):
+    return(re.sub("^", "# ", str))
+
+def mapUnPyComment(str):
+    return(re.sub("^# ", "", str))
+
+
 def numberList(inList):
     for num, word in enumerate(inList):
         print("{}. {}".format(num+1, word.strip()))
@@ -125,6 +132,16 @@ def unindent(inList):
     for line in output:
        print("{}".format(line)) 
 
+def pyComment(inList):
+    output = map(mapPyComment, inList)
+    for line in output:
+       print("{}".format(line)) 
+
+def unPyComment(inList):
+    output = map(mapUnPyComment, inList)
+    for line in output:
+       print("{}".format(line)) 
+
 def urlencode(str):
     print(urllib.quote(str))
 
@@ -165,6 +182,10 @@ def run(query):
         indent(splitInput(clipboard))
     elif query == "unindent":
         unindent(splitInput(clipboard))
+    elif query == "pycomment":
+        pyComment(splitInput(clipboard))
+    elif query == "unpycomment":
+        unPyComment(splitInput(clipboard))
     elif query == "slashes":
         reverseSlashes(clipboard)
     elif query == "urlEncode":
